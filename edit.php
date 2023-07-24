@@ -30,7 +30,7 @@ if(isset($_POST['update']))
         move_uploaded_file($tempname,$folder);
     }
     
-    $sql =mysqli_query($conn,"UPDATE class SET name='$name', age='$age',email='$email',dob='$dob','photo'='$image' WHERE id='$id'");
+    $sql =mysqli_query($conn,"UPDATE class SET name='$name', age='$age',email='$email',dob='$dob',photo='$image' WHERE id='$id'");
     if($sql)
     {
         echo'<script>alert("update successfully");window.location.href="read.php";</script>';

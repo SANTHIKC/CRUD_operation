@@ -42,7 +42,7 @@ $query = mysqli_query($conn,"SELECT * FROM class");
                             <td><?php echo $row['password']; ?></td>
                             <td><?php echo $row['dob']; ?></td>
                             <td>
-                                <img src="./image/ <?php echo $row['photo'];?>" width="75" height="75" >
+                                <img src="./image/<?php echo $row['photo'];?>"  width="75"  height="75" >
                             </td>
                             <td><a href="edit.php?id=<?php echo $row['id'];?>" class = "btn btn-primary">Edit</a></td>
                             <td><a href ="delete.php?id=<?php echo $row['id'];?>" class= "btn btn-danger">Delete</a></td>
