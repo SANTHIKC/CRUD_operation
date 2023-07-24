@@ -9,8 +9,28 @@ if(isset($_POST['update']))
     $age =$_POST['age'];
     $email =$_POST['email'];
     $dob =$_POST['dob'];
+    $filename=$_FILES["photo"]["name"];
+    $tempname=$_FILES["photo"]["tmp_name"];
+    $folder = "./image/".$filename;
+    $image=$filename;
+
+    $uploadOk=1;
+    $imageFileType=strtolower(pathinfo($folder,PATHINFO_EXTENSION));
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif")
+    {
+        echo "sorry, only JPG,JPEG,PNG & GIF files are allowded.";
+        $uploadOk =0;
+    }
+    if($uploadOk == 0)
+    {
+        echo "sorry";
+    }
+    else
+    {
+        move_uploaded_file($tempname,$folder);
+    }
     
-    $sql =mysqli_query($conn,"UPDATE class SET name='$name', age='$age',email='$email',dob='$dob' WHERE id='$id'");
+    $sql =mysqli_query($conn,"UPDATE class SET name='$name', age='$age',email='$email',dob='$dob','photo'='$image' WHERE id='$id'");
     if($sql)
     {
         echo'<script>alert("update successfully");window.location.href="read.php";</script>';
@@ -36,16 +56,15 @@ if(isset($_POST['update']))
             <div class="col-4"></div>
             <div class="col-4">
             
-                <form method="post" class="bg-dark p-3 mt-5 text-light" >
+                <form method="post" class="bg-dark p-3 mt-5 text-light" enctype="multipart/form-data">
                 <h1>Registration Form</h1>
-                    <label>Enter name</label>
+            
                     <input type="text" name="name" class="form-control" value="<?php echo $data['name'];?>" >
-                    <label>enter age</label>
                     <input type="text" name="age" class="form-control" value="<?php echo $data['age'];?> ">
-                    <label>enter email</label>
                     <input type="email" name="email" class="form-control" value="<?php echo $data['email'];?>">
-                    <label>enterdob</label>
                     <input type="date" name="dob" class="form-control" value="<?php echo $data['dob'];?>">
+                    <input type="file" name ="photo">
+
                     <div class="row">
                         <div class="col-4"></div>
                         <div class="col-4">

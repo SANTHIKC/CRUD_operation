@@ -24,6 +24,7 @@ $query = mysqli_query($conn,"SELECT * FROM class");
                             <th>email</th>
                             <th>password</th>
                             <th>dob</th>
+                            <th>photo</th>
                             <th colspan="2" style="text-align:center">Action</th>
                         
                         </tr>
@@ -40,6 +41,9 @@ $query = mysqli_query($conn,"SELECT * FROM class");
                             <td><?php echo $row['email']; ?></td>
                             <td><?php echo $row['password']; ?></td>
                             <td><?php echo $row['dob']; ?></td>
+                            <td>
+                                <img src="./image/ <?php echo $row['photo'];?>" width="75" height="75" >
+                            </td>
                             <td><a href="edit.php?id=<?php echo $row['id'];?>" class = "btn btn-primary">Edit</a></td>
                             <td><a href ="delete.php?id=<?php echo $row['id'];?>" class= "btn btn-danger">Delete</a></td>
                         </tr>
